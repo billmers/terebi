@@ -1,0 +1,65 @@
+---
+tv_path: tv/
+movie_path: movies/
+
+itunes_search:
+  default_show:   "#{show}"
+  default_season: "Season #{series_number}"
+  default_country: us
+  overrides:
+    - show:    "Downton Abbey"
+      country: "gb"
+
+    - show:    "Frozen Planet"
+      season:  ""
+      country: "gb"
+
+    - show:    "Homeland"
+      season:  "Season #{series_number - 1}"
+
+    - show:    "Human Planet"
+      season:  ""
+
+    - show:    "NOVA"
+      season:  "Vol. #{series_number - 38}"
+
+    - show:    "Peep Show"
+      season:  "Series #{series_number - 1}"
+      country: "gb"
+
+    - show:    "Planet Earth"
+      season:  ""
+
+    - show:    "The Universe"
+      season:  "5"
+
+    - show:    "Wallander"
+      season:  "Series #{series_number}"
+
+    - show:    "Vietnam in HD"
+      season:  ""
+
+#     when "Downton Abbey"
+#       iso_code = "gb"
+#     when "Frozen Planet"
+#       iso_code = "gb"
+#       season = nil
+#     when "Homeland"
+#       season = season - 1 unless season == 1
+#     when "NOVA"
+#       season = "Vol. #{season-38}"
+#     when "Strike Back"
+#       season = 1
+#     when "The Universe"
+#       season = 5
+#     when "Human Planet", "Planet Earth", "Vietnam in HD"
+#       season = nil
+#     when "Wallander"
+#       season = "Series #{season}"
+#     when "Doctor Who (2005)"
+#       show = "Doctor Who"
+#       season = "Season #{season}"
+#     when "Peep Show"
+#       season = "Series #{season-1}"
+#       iso_code = "gb"
+#     end
