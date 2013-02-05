@@ -1,4 +1,5 @@
-
+MISC
+====
     - cover logic: if season not found, try season-1
     - sickbeard processing script
       - https://gist.github.com/708284
