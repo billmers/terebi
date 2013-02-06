@@ -1,4 +1,4 @@
-Copyright (c) 2012 Bill Mers
+Copyright (c) 2012-2013 Bill Mers
 
 MIT License
 
