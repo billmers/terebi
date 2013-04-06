@@ -1,8 +1,10 @@
-*.gem
-*.sublime-*
 .DS_Store
-Gemfile.lock
-.bundle/
-log/
-pkg/
-test/reports/
+/*.sublime-workspace
+/*.todo
+/.bundle
+/db/*.sqlite3
+/Gemfile.lock
+/log
+/pkg
+/test/reports/
+/tmp
