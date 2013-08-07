@@ -1,52 +1,61 @@
+$stdout.sync = true
+
 require 'thor'
+require 'terebi'
 
 module Terebi
-
   class CLI < Thor
+    include Logging
 
-    desc "import", "tells iFlicks to import a video via applescript"
-    #method_option :file, :desc => "this is the file you have to pass in"
-    def import(path)
-      # path is file or folder
-    #     - terebi iflicks import "/whatever/tv/show/s01e02.avi"
+    desc "add-art NAME SEASON URL", "Add artwork to a TV show"
+    def add_art(name, season, url)
+      logger.debug "#{name}, #{season}, #{url}"
+
+      ArtDownloader.new(nil).download2(name, season, url)
+      Library.update_show(name)
     end
 
-    desc "update-episode-art", "updates artwork for a file"
-    def update_episode_art(file)
+    desc "cleanup-library", "Archive or delete watched videos"
+    def cleanup_library
+      puts "not implemented"
     end
 
-    desc "update-show-art", "updates artwork for a show"
-    def update_artwork(folder)
+    desc "diff-library", "Show differences between the filesystem and iTunes"
+    def diff_library
+      puts "not implemented"
     end
 
-    desc "delete-show", "deletes show"
-    def delete_show(folder)
+    desc "import-video PATH", "Tell iFlicks to import a video"
+    def import_video(path)
+      IFlicks.new.import_video(path)
     end
 
-    desc "delete-episode", "delete an episode"
-    def delete_episode(file)
+    desc "missing-art", "List TV shows that are missing artwork"
+    def missing_art
+      puts "not implemented"
     end
 
-    desc "delete-movie", "delete a movie"
-    def delete_movie(folder)
+    # option :days,  :aliases => "d", :banner => "N",     :desc => "only refresh shows modified in the last N days"
+
+    desc "refresh-all", "Refresh artwork for all shows"
+    def refresh_all
+      Library.update_all
     end
 
-    desc "clean-library", "does fancy stuff to cleanup the library"
-    def clean_library(who_knows)
+    desc "refresh-episode PATH", "Refresh artwork for an episode"
+    def refresh_episode(path)
+      Library.update_episode(path)
     end
 
+    desc "refresh-show NAME", "Refresh artwork for a show"
+    def refresh_show(name)
+      Library.update_show(name)
+    end
 
-    # - terebi library add "/some/tv/show"
-    # - terebi library delete [episode|show|movie]
-
-
+    desc "scan-movie FOLDER", "Tell CouchPotato to process a movie folder"
+    def scan_movie(folder)
+      CouchPotato.new.scan(folder)
+    end
 
   end
-
 end
-
-
-#!/Users/bill/.rbenv/versions/1.9.3-p327/bin/ruby
-
-
-# TVShowLibrary.update_show("Summer Heights High")

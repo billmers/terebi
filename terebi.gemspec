@@ -7,9 +7,9 @@ Gem::Specification.new do |gem|
   gem.name          = "terebi"
   gem.version       = Terebi::VERSION
   gem.authors       = ["Bill Mers"]
-  gem.email         = ["bill.w.mers@gmail.com"]
-  gem.description   = "iTunes and NZB integration."
-  gem.summary       = "iTunes, iFlicks, Sick-Beard, and CouchPotato video library manager."
+  gem.email         = ["b@mers.me"]
+  gem.description   = "iTunes automation."
+  gem.summary       = "Automates some iTunes library stuff I got tired of doing by hand."
   gem.homepage      = "http://www.github.com/billmers/terebi"
 
   gem.files         = `git ls-files`.split($/)
@@ -17,10 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "listen", "~> 0.7.0"
-  gem.add_dependency "thor", "~> 0.17"
+  gem.add_dependency "thor", "~> 0.18"
 
-  gem.add_development_dependency "minitest", "~> 4"
+  gem.add_development_dependency "minitest", "~> 5"
   gem.add_development_dependency "rake", "~> 10"
   gem.add_development_dependency "awesome_print", "~> 1.1"
 end

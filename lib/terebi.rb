@@ -1,27 +1,14 @@
-require "terebi/version"
+require 'terebi/version'
 
-
-
-# http://bendodsonapps.com/projects/itunes-tv-artwork/
-# http://getvideoartwork.com/
-
-require 'rubygems'
-require 'cgi'
-require 'json'
-require 'logger'
-require 'open-uri'
-
-TV_DIR = "/Users/bill/Movies/TV Shows"
-
-
+require 'terebi/logging'
+require 'terebi/artwork'
+require 'terebi/couchpotato'
+require 'terebi/episode'
+require 'terebi/iflicks'
+require 'terebi/itunes'
+require 'terebi/library'
 
 module Terebi
-  # Your code goes here...
-
-  STDOUT.sync = true
-
-  LOG = Logger.new(STDOUT)
-  LOG.level = Logger::INFO
-
-
+#  TV_DIR = "/Volumes/bill/Movies/TV Shows"
+  TV_DIR = "/Users/Bill/Desktop/TV"
 end
