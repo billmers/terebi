@@ -2,23 +2,22 @@ module Terebi
   class ITunes
     extend Logging
 
-    def self.update_art(episode)
-      art_path     = episode.art_path
-      episode_path = episode.full_path
+    def self.set_art(episode)
 
+      art_path = ArtDownloader.art_path(episode.show, episode.season)
       unless File.exists?(art_path)
-        logger.warn "skipping #{episode.to_s}, art not found"
+        logger.warn "[#{episode}] no local artwork found, skipping itunes update"
         return
       end
 
-      command = 'osascript -e "tell application \"iTunes\" to set data of artwork 1 of (add POSIX file \"' + episode_path + '\" as alias) to (read (file POSIX file \"' + art_path +'\") as picture)"'
+      command = 'osascript -e "tell application \"iTunes\" to set data of artwork 1 of (add POSIX file \"' + episode.path + '\" as alias) to (read (file POSIX file \"' + art_path +'\") as picture)"'
       result = `#{command} 2>&1`
 
       if result.empty?
-        logger.info "art updated for #{episode.to_s}"
+        logger.info "[#{episode}] itunes artwork set"
         return true
       else
-        logger.error "failed to set art for #{episode.to_s}"
+        logger.error "[#{episode}] failed to set itunes artwork"
         logger.error "command: #{command}"
         logger.error "result: #{result}"
         return false

@@ -9,10 +9,7 @@ module Terebi
 
     desc "add-art NAME SEASON URL", "Add artwork to a TV show"
     def add_art(name, season, url)
-      logger.debug "#{name}, #{season}, #{url}"
-
-      ArtDownloader.new(nil).download2(name, season, url)
-      Library.update_show(name)
+      Library.add_art(name, season, url)
     end
 
     desc "cleanup-library", "Archive or delete watched videos"
@@ -32,24 +29,32 @@ module Terebi
 
     desc "missing-art", "List TV shows that are missing artwork"
     def missing_art
-      puts "not implemented"
+      if Library.missing_art()
+        logger.info ""
+        logger.info "try"
+        logger.info "  http://squaredtvart.tumblr.com/"
+        logger.info "  http://bendodsonapps.com/projects/itunes-artwork-finder/"
+        logger.info "  http://getvideoartwork.com/"
+      else
+        logger.info "no missing artwork"
+      end
     end
 
     # option :days,  :aliases => "d", :banner => "N",     :desc => "only refresh shows modified in the last N days"
 
     desc "refresh-all", "Refresh artwork for all shows"
     def refresh_all
-      Library.update_all
+      Library.refresh_all
     end
 
     desc "refresh-episode PATH", "Refresh artwork for an episode"
     def refresh_episode(path)
-      Library.update_episode(path)
+      Library.refresh_episode(path)
     end
 
     desc "refresh-show NAME", "Refresh artwork for a show"
     def refresh_show(name)
-      Library.update_show(name)
+      Library.refresh_show(name)
     end
 
     desc "scan-movie FOLDER", "Tell CouchPotato to process a movie folder"
